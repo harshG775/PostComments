@@ -16,8 +16,8 @@ const dataBase = {
     ]
 }
 app.get('/api/data', (req, res) => {
-    res.json({ users: ["userOne", "userTwo", "userThree"] });
+    res.json(dataBase);
 });
 
-const port = process.env.PORT || 4000
-app.listen(port,'0.0.0.0', () => { console.log(`server started on localhost:${port}`) });
+const port = 4000
+app.listen(port,() => { console.log(`server started on localhost:${port}`) });

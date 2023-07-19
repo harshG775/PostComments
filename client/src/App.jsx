@@ -5,7 +5,7 @@ export default function App() {
 	
     useEffect(() => {
         const fetchData = async () => { try {
-                const response = await fetch("http://localhost:4000/api/data");
+                const response = await fetch("/api/data");
                 const data = await response.json();
 				// console.log(data)
                 setServerData(data);
@@ -14,8 +14,13 @@ export default function App() {
     }, []);
     return (
 	<div>
-		{serverData.users?.map((user,i)=>(
-            <p key={i}>{user}</p>
-        ))}
+		{
+            serverData.comments?.map((comment,i)=>(
+                <div key={i}>
+                    <h3>{comment.username}</h3>
+                    <p>{comment.comment}</p>
+                </div>
+            ))
+		}	
 	</div>);
 }
