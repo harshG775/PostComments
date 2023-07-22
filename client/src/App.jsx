@@ -5,7 +5,7 @@ export default function App() {
 	
     useEffect(() => {
         const fetchData = async () => { try {
-                const response = await fetch("/api/data");
+                const response = await fetch("/api/comments");
                 const data = await response.json();
 				// console.log(data)
                 setServerData(data);
@@ -15,12 +15,17 @@ export default function App() {
     return (
 	<div>
 		{
-            serverData.comments?.map((comment,i)=>(
+            serverData?.map((comment,i)=>(
                 <div key={i}>
                     <h3>{comment.username}</h3>
                     <p>{comment.comment}</p>
                 </div>
             ))
-		}	
+		}
+        <form method="post" action="/api/comment/new">
+                <input type="text" name="username" placeholder="UserName"/>
+                <input type="text" name="comment" placeholder="Comment..."/>
+                <button>comment</button>
+        </form>
 	</div>);
 }
